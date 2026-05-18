@@ -1,13 +1,24 @@
 # Expense Tracker REST API
 
-A production-ready REST API built with Java and Spring Boot for tracking personal expenses. Features JWT authentication, MySQL database, and full CRUD operations.
+A production-ready REST API built with Java and Spring Boot for tracking personal expenses. Features JWT authentication, PostgreSQL database, and full CRUD operations.
+
+## Live Demo
+
+Base URL: `https://expense-tracker-lmtz.onrender.com`
+
+| Endpoint | Description |
+|----------|-------------|
+| `POST /api/auth/register` | Create account |
+| `POST /api/auth/login` | Get JWT token |
+| `GET /api/expenses` | List expenses (auth required) |
+| `GET /api/expenses/summary` | Spending summary (auth required) |
 
 ## Tech Stack
 
 - **Java 21** + **Spring Boot 3.5**
 - **Spring Security** + **JWT** (authentication)
 - **Spring Data JPA** + **Hibernate** (ORM)
-- **MySQL** (production) / **H2** (development)
+- **PostgreSQL** (production / Render) / **H2** (development)
 - **Lombok** + **Bean Validation**
 - **Maven**
 
@@ -93,21 +104,21 @@ spring.profiles.active=prod
 
 **Register:**
 ```bash
-curl -X POST http://localhost:8080/api/auth/register \
+curl -X POST https://expense-tracker-lmtz.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{"username":"john","email":"john@example.com","password":"secret123"}'
 ```
 
 **Login:**
 ```bash
-curl -X POST http://localhost:8080/api/auth/login \
+curl -X POST https://expense-tracker-lmtz.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"username":"john","password":"secret123"}'
 ```
 
 **Create Expense (use token from login):**
 ```bash
-curl -X POST http://localhost:8080/api/expenses \
+curl -X POST https://expense-tracker-lmtz.onrender.com/api/expenses \
   -H "Authorization: Bearer YOUR_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{"title":"Coffee","amount":120,"category":"Food","date":"2026-05-18"}'
@@ -115,7 +126,7 @@ curl -X POST http://localhost:8080/api/expenses \
 
 **Get Summary:**
 ```bash
-curl http://localhost:8080/api/expenses/summary \
+curl https://expense-tracker-lmtz.onrender.com/api/expenses/summary \
   -H "Authorization: Bearer YOUR_TOKEN"
 ```
 
